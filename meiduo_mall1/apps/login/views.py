@@ -65,5 +65,5 @@ class UserInfo(LoginRequiredMixin, View):
             "email_active": request.user.email_active,
         }
 
-        return render(request, "user_center_info.html",context)
+        return render(request, "user_center_info.html",  context=context)
 
