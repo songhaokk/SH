@@ -13,7 +13,7 @@ def getmobie(request):
         return e
     else:
         return user
-
+# 认证
 class Username(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         user = getmobie(username)

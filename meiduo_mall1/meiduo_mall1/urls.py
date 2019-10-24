@@ -18,8 +18,10 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', include("apps.users.urls",namespace="index")),
+    url(r'', include("apps.users.urls",namespace="users")),
     url(r'', include("apps.concents.urls", namespace="concents")),
     url(r'', include("apps.verifications.urls", namespace="verifications")),
-    url(r'', include("apps.login.urls", namespace="login"))
+    url(r'', include("apps.login.urls", namespace="login")),
+    url(r'', include('apps.oauth.urls',namespace='oauth')),
+    url(r'', include('apps.areas.urls',namespace="areas")),
 ]

@@ -20,9 +20,9 @@
 					欢迎您：<em>张 山</em>
 				</div>
 				<div class="login_btn fl">
-					<a href="login.html">登录</a>
+					<a href="/login/">登录</a>
 					<span>|</span>
-					<a href="register.html">注册</a>
+					<a href="/register/">注册</a>
 				</div>
 				<div class="user_link fl">
 					<span>|</span>
@@ -58,24 +58,36 @@
 			<ul>
 				<li><a href="user_center_info.html" class="active">· 个人信息</a></li>
 				<li><a href="../static/user_center_order.html">· 全部订单</a></li>
-				<li><a href="../static/user_center_site.html">· 收货地址</a></li>
+				<li><a href="{{ url('users:add') }}">· 收货地址</a></li>
 				<li><a href="../static/user_center_pass.html">· 修改密码</a></li>
 			</ul>
 		</div>
 		<div class="right_content clearfix">
-				<div class="info_con clearfix">
-					<h3 class="common_title2">基本信息</h3>
-					<ul class="user_info_list">
-						<li><span>用户名：</span>张山</li>
-						<li><span>联系方式：</span>18500001111</li>
-						<li>
-	                    <span>Email：</span>
-	                    <input type="text" name="email" class="email">
-	                    <input type="button" name="" value="保 存">
-	                    <input type="reset" name="" value="取 消">
-	                	</li>			
-					</ul>
-				</div>
+				<div class="info_con clearfix" v-cloak>
+    <h3 class="common_title2">基本信息</h3>
+    <ul class="user_info_list">
+        <li><span>用户名：</span>[[ username ]]</li>
+        <li><span>联系方式：</span>[[ mobile ]]</li>
+        <li>
+            <span>Email：</span>
+            <div v-if="set_email">
+                <input v-model="email" @blur="check_email" type="email" name="email" class="email">
+                <input @click="save_email" type="button" name="" value="保 存">
+                <input @click="cancel_email" type="reset" name="" value="取 消">
+                <div v-show="error_email" class="error_email_tip">邮箱格式错误</div>
+            </div>
+            <div v-else>
+                <input v-model="email" type="email" name="email" class="email" readonly>
+                <div v-if="email_active">
+                    已验证
+                </div>
+                <div v-else>
+                    待验证<input @click="save_email" :disabled="send_email_btn_disabled" type="button" :value="send_email_tip">
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
 				
 				<h3 class="common_title2">最近浏览</h3>
 				<div class="has_view_list">
@@ -147,6 +159,12 @@
 		<p>CopyRight © 2016 北京美多商业股份有限公司 All Rights Reserved</p>
 		<p>电话：010-****888    京ICP备*******8号</p>
 	</div>
+        <script type="text/javascript">
+            let username = "{{ username }}"
+            let mobile = "{{ mobile }}"
+            let email = "{{ email }}"
+            let email_active = "{{ email_active }}"
+        </script>
 	</div>
 	<script type="text/javascript" src="../static/js/user_center_info.js"></script>
 </body>

@@ -28,7 +28,7 @@
                             {{ csrf_input }}
 							<input type="text" name="username" class="name_input" placeholder="请输入用户" v-model="username" @blur="check_username">
 							<div class="user_error" v-show="error_username">[[error_username_message]]</div>
-                            <input type="password" name="pwd" class="pass_input" placeholder="请输入密码" v-model="pwd" @blur="check_pwd">
+                            <input type="password" name="pwd" class="pass_input" placeholder="请输入密码" v-model="password" @blur="check_pwd">
 							<div class="pwd_error" v-show="error_password">[[error_password_message]]</div>
 							<div class="more_input clearfix">
 								<input type="checkbox" name="remembered">
@@ -41,9 +41,10 @@
 					</div>
 				</div>
 				<div class="third_party">
-					<a href="javascript:;" class="qq_login">QQ</a>
+{#					<a href="javascript:;" class="qq_login" v-model="" @click="qq_login">QQ</a>#}
+					<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101518219&redirect_uri=http://www.meiduo.site:8000/oauth_callback&state=xxxx" class="qq_login" >QQ</a>
 					<a href="#" class="weixin_login">微信</a>
-					<a href="register.html" class="register_btn">立即注册</a>
+					<a href="/register/" class="register_btn">立即注册</a>
 				</div>
 
 			</div>
@@ -58,7 +59,7 @@
 			<span>|</span>
 			<a href="#">招聘人才</a>
 			<span>|</span>
-			<a href="#">友情链接</a>		
+			<a href="#">友情链接</a>
 		</div>
 		<p>CopyRight © 2016 北京美多商业股份有限公司 All Rights Reserved</p>
 		<p>电话：010-****888    京ICP备*******8号</p>

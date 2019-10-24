@@ -15,9 +15,9 @@ class loogin(View):
         remembered = request.POST.get("remembered")
         if not all([username, password]):
             return HttpResponseBadRequest("信息不全")
-        if not(re.match(r'^[a-zA-Z0-9_-]{5,20}$', "password")):
+        if not(re.match(r'^[a-zA-Z0-9_-]{5,20}$', password)):
             return HttpResponseBadRequest("")
-        if not(re.match(r'^[a-zA-Z0-9_-]{5,20}$', 'username')):
+        if not(re.match(r'^[a-zA-Z0-9_-]{5,20}$', username)):
             return HttpResponseBadRequest("")
         from django.contrib.auth import authenticate
         # 认证登陆
@@ -54,8 +54,16 @@ class logoutuser(View):
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+# 用户中心
 class UserInfo(LoginRequiredMixin, View):
 
     def get(self,request):
-        return render(request, "user_center_info.html")
+        context = {
+            "username": request.user.username,
+            "mobile": request.user.mobile,
+            "email": request.user.email,
+            "email_active": request.user.email_active,
+        }
+
+        return render(request, "user_center_info.html",context)
 

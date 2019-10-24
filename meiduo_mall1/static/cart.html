@@ -4,11 +4,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>美多商城-购物车</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
-    <script type="text/javascript" src="../static/js/host.js"></script>
-    <script type="text/javascript" src="../static/js/vue-2.5.16.js"></script>
-    <script type="text/javascript" src="../static/js/axios-0.18.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="js/host.js"></script>
+    <script type="text/javascript" src="js/vue-2.5.16.js"></script>
+    <script type="text/javascript" src="js/axios-0.18.0.min.js"></script>
 </head>
 <body>
 <div id="app" v-cloak>
@@ -32,14 +32,14 @@
                     <span>|</span>
                     <a href="/cart/">我的购物车</a>
                     <span>|</span>
-                    <a href="../static/user_center_order.html">我的订单</a>
+                    <a href="user_center_order.html">我的订单</a>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="search_bar clearfix">
-        <a href="../templates/index.html" class="logo fl"><img src="../static/images/logo.png"></a>
+        <a href="../templates/index.html" class="logo fl"><img src="images/logo.png"></a>
         <div class="search_wrap fl">
             <form method="get" action="/search/" class="search_con">
                 <input type="text" class="input_text fl" name="q" placeholder="搜索商品">
@@ -107,8 +107,8 @@
 <script>
     var cart_skus = {{ cart_skus|safe }};
 </script>
-<script type="text/javascript" src="../static/js/common.js"></script>
-<script type="text/javascript" src="../static/js/host.js"></script>
-<script type="text/javascript" src="../static/js/cart.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/host.js"></script>
+<script type="text/javascript" src="js/cart.js"></script>
 </body>
 </html>

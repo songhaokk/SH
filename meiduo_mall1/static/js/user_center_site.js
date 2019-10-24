@@ -49,15 +49,17 @@ var vm = new Vue({
                 })
                     .then(response => {
                         if (response.data.code == '0') {
-                            this.cities = response.data.sub_data.subs;
-                        } else {
-                            console.log(response.data);
                             this.cities = [];
+                            this.cities = response.data.subs;
+                            console.log(response.data);
+
+
                         }
                     })
                     .catch(error => {
                         console.log(error.response);
                         this.cities = [];
+
                     });
             }
         },
@@ -70,10 +72,11 @@ var vm = new Vue({
                 })
                     .then(response => {
                         if (response.data.code == '0') {
-                            this.districts = response.data.sub_data.subs;
+                            this.districts = response.data.subs;
                         } else {
                             console.log(response.data);
                             this.districts = [];
+
                         }
                     })
                     .catch(error => {
@@ -344,3 +347,4 @@ var vm = new Vue({
         },
     }
 });
+

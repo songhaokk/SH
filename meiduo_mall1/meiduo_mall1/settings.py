@@ -25,7 +25,7 @@ SECRET_KEY = 'kj78y9ate!(7zi6i49_8l%911(yw0siv-#9@f@=xf1+&9ez@&d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["www.meiduo.site", "127.0.0.1"]
+ALLOWED_HOSTS = ["www.meiduo.site","192.168.136.133" ,"127.0.0.1"]
 
 
 # Application definition
@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'apps.concents',
     'apps.verifications',
     'apps.login',
+    'apps.oauth',
+    'apps.areas',
+    'apps.goods',
 ]
 
 MIDDLEWARE = [
@@ -220,8 +223,28 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+# 替换系统的user
 AUTH_USER_MODEL = 'users.User'
+# 认证后端， 登录时候的认证
 AUTHENTICATION_BACKENDS = [
     'utils.users.Username'
 ]
+# 未认证默认是accounts/login/， 现在需要未认证进入登陆界面，需要配置。  搭配LoginRequiredMixin表示当用户未通过登录验证时，将用户重定向到登录页面
 LOGIN_URL = "/login/"
+
+# qq 登陆参数
+QQ_CLIENT_ID = '101518219'
+
+QQ_CLIENT_SECRET = '418d84ebdc7241efb79536886ae95224'
+
+QQ_REDIRECT_URI = 'http://www.meiduo.site:8000/oauth_callback'
+# *************************** 发送邮件*************************
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+#发送邮件的邮箱
+EMAIL_HOST_USER = 'Heywei0603@163.com'
+#在邮箱中设置的客户端授权密码
+EMAIL_HOST_PASSWORD = ''
+#收件人看到的发件人
+EMAIL_FROM = '美多商城<qi_rui_hua@163.com>'

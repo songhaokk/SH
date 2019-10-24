@@ -129,7 +129,10 @@ class SmsCodeView(View):
             # 3.3 比对
         if redis_text.decode().lower() != image_code.lower():
             return HttpResponseBadRequest("不一致")
-
+        # 获取标记
+        send_flag = redis_conn.get("send_flag%s" %mobile)
+        if send_flag:
+            return JsonResponse({"msg": "短信发送频繁"})
         # ④ 生成一个随机短信验证码
         # 6位数值
         from random import randint
@@ -143,6 +146,8 @@ class SmsCodeView(View):
 
         redis_conn.setex(mobile, 300, sms_code)
         print(sms_code)
+        # 添加标记
+        redis_conn.setex("send_flag%s" %mobile, 60, 1)
         # ⑥ 发送短信
         # 免费开发测试使用的模板ID为1，形式为：
         # 【云通讯】您使用的是云通讯短信模板，您的验证码是{1}，请于{2}分钟内正确输入。
